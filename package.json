@@ -32,8 +32,8 @@
         "resources/*"
     ],
     "scripts": {
-        "build": "vite build",
-        "build:dev": "NODE_ENV=development vite build",
+        "build": "tsc --noEmit && vite build",
+        "build:dev": "NODE_ENV=development tsc --noEmit && vite build",
         "dev": "NODE_ENV=development vite build --watch",
         "dev:prod": "vite build --watch",
         "lint": "npm run lint:js && npm run lint:package",
@@ -41,7 +41,8 @@
         "lint:js": "eslint --ext .js,.ts,.vue,.cjs,.mjs .",
         "lint:js:fix": "yarn lint:js --fix",
         "lint:package": "sort-package-json --check 'package.json'",
-        "lint:package:fix": "sort-package-json 'package.json'"
+        "lint:package:fix": "sort-package-json 'package.json'",
+        "typecheck": "tsc --noEmit"
     },
     "dependencies": {
         "to-title-case": "^1.0.0",
