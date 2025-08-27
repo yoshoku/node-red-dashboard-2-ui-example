@@ -63,6 +63,14 @@ export default [
         }
     },
 
+    // Vite設定ファイル
+    {
+        files: ['vite.config.mjs'],
+        rules: {
+            'import/no-unresolved': 'off'
+        }
+    },
+
     // UI Components設定 (Vue)
     ...vue.configs['flat/recommended'],
     {

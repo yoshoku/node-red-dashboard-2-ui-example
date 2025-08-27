@@ -1,3 +1,4 @@
+import { fileURLToPath } from 'node:url'
 import { resolve } from 'path'
 
 import vue from '@vitejs/plugin-vue'
@@ -18,8 +19,8 @@ export default defineConfig({
             targets: [
                 {
                     // Copy the build output into Node-RED's /resources folder
-                    src: normalizePath(resolve(__dirname,`./ui/dist/${LIBRARY_NAME}.umd.js`)),
-                    dest: normalizePath(resolve(__dirname, 'resources'))
+                    src: normalizePath(resolve(fileURLToPath(import.meta.url), '../ui/dist', `${LIBRARY_NAME}.umd.js`)),
+                    dest: normalizePath(resolve(fileURLToPath(import.meta.url), '../resources'))
                 }
             ]
         })
@@ -30,7 +31,7 @@ export default defineConfig({
 
         // Configure build as a UMD library
         lib: {
-            entry: resolve(__dirname, 'ui/index.js'),
+            entry: resolve(fileURLToPath(import.meta.url), '../ui/index.js'),
             name: LIBRARY_NAME,
             formats: ['umd'],
             fileName: (format, entryName) => `${LIBRARY_NAME}.${format}.js`
